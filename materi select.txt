@@ -1,0 +1,171 @@
+query select
+
+C:\Users\ASUS>cd \xampp\mysql
+
+C:\xampp\mysql>cd bin
+
+C:\xampp\mysql\bin>mysql -u root -p
+
+
+1 use dbtokoti05 (ini kode untuk membuka database baru yang tdi dibuat)
+2 select * FROM produk;
+
+//agar lebih rapih rubah kode seperti ini
+
+3.  select kode, nama, harga_beli, harga_jual FROM produk;
++--------+-------------------+------------+------------+
+| kode   | nama              | harga_beli | harga_jual |
++--------+-------------------+------------+------------+
+| TV01   | Televisi 21 inchs |    3500000 |   50500000 |
+| TV02   | Televisi 40 inch  |    5500000 |    7440000 |
+| K001   | Kulkas 2 pintu    |    3500000 |    4680000 |
+| M001   | Meja Makan        |     500000 |     600000 |
+| TK01   | Teh Kotak         |       3000 |       3500 |
+| PC01   | PC Desktop HP     |    7000000 |    9984000 |
+| TB01   | Teh Botol         |       2000 |       2500 |
+| AC01   | Notebook Acer S   |    8000000 |   11232000 |
+| LN01   | Notebook Lenovo   |    9000000 |   12480000 |
+| L005   | Laptop Lenovo     |   13000000 |   16000000 |
+| L112   | Kopi              |      20000 |      30000 |
+| L113   | Teh Sosro 2       |      10000 |      15000 |
+| L0015  | Laptop Asus       |    3000000 |    5000000 |
+| TV0115 | Televisi 22 inc`  |    3500000 |   50500000 |
+| TV0116 | Televisi 23 inc   |    3500000 |   50500000 |
+| TV0117 | Televisi 24 inc   |    3500000 |   50500000 |
+| TV0118 | Televisi 25 inc   |    3500000 |   50500000 |
+| TV0120 | Televisi 27 inc   |    3500000 |   50500000 |
+| TV0121 | Televisi 28 inc   |    3500000 |   50500000 |
+| TV0122 | Televisi 29 inc   |    3500000 |   50500000 |
+| THP001 | Teh Pucuk         |       4000 |       5000 |
+| THP002 | Teh Pucuk2        |       4000 |       5000 |
++--------+-------------------+------------+------------+
+22 rows in set (0.001 sec) //hasil nya seperti ini 
+
+4. SELECT nama, harga_jual FROM produk
+    -> WHERE harga_jual < 5000000 AND harga_jual > 500000;
++----------------+------------+
+| nama           | harga_jual |
++----------------+------------+
+| Kulkas 2 pintu |    4680000 |
+| Meja Makan     |     600000 |
++----------------+------------+
+2 rows in set (0.001 sec)  // ini menampilkan harga jual yang di bawah 5 juta dan lebih dari 500ribu
+
+5. 
+MariaDB [dbtokoti05]> SELECT nama, harga_jual FROM produk
+    -> WHERE harga_jual < 5000000 OR harga_jual > 500000;
++-------------------+------------+
+| nama              | harga_jual |
++-------------------+------------+
+| Televisi 21 inchs |   50500000 |
+| Televisi 40 inch  |    7440000 |
+| Kulkas 2 pintu    |    4680000 |
+| Meja Makan        |     600000 |
+| Teh Kotak         |       3500 |
+| PC Desktop HP     |    9984000 |
+| Teh Botol         |       2500 |
+| Notebook Acer S   |   11232000 |
+| Notebook Lenovo   |   12480000 |
+| Laptop Lenovo     |   16000000 |
+| Kopi              |      30000 |
+| Teh Sosro 2       |      15000 |
+| Laptop Asus       |    5000000 |
+| Televisi 22 inc`  |   50500000 |
+| Televisi 23 inc   |   50500000 |
+| Televisi 24 inc   |   50500000 |
+| Televisi 25 inc   |   50500000 |
+| Televisi 27 inc   |   50500000 |
+| Televisi 28 inc   |   50500000 |
+| Televisi 29 inc   |   50500000 |
+| Teh Pucuk         |       5000 |
+| Teh Pucuk2        |       5000 |
++-------------------+------------+
+22 rows in set (0.001 sec) // ini menampilkan yang kurang dari 5 juta dan juga kurang dari 500ribu atau lebih kurang dari 5juta 
+
+6. SELECT id, nama FROM pelanggan WHERE id
+    -> IN(2,4,6);
++----+---------------+
+| id | nama          |
++----+---------------+
+|  6 | Gayatri Dwi   |
+|  2 | Pandan Wangi  |
+|  4 | Swandaru Geni |
++----+---------------+
+3 rows in set (0.003 sec) // menampilkan kode dan nama pelanggan saja
+
+7.
+MariaDB [dbtokoti05]> SELECT kode, nama, tgl_lahir FROM pelanggan
+    -> ORDER BY tgl_lahir DESC;
++-------+--------------------+------------+
+| kode  | nama               | tgl_lahir  |
++-------+--------------------+------------+
+| K0011 | Ira                | 2023-11-07 |
+| K0010 | Andi Wijaya        | 2023-11-07 |
+| C001  | Agung Sedayu Group | 2010-01-01 |
+| C009  | Ahmad Hasan        | 1992-10-15 |
+| C010  | Cassanndra         | 1990-11-20 |
+| C008  | Andre Haru         | 1990-07-15 |
+| C007  | Dewi Gyat          | 1988-12-01 |
+| C006  | Gayatri Dwi        | 1987-11-28 |
+| C005  | Pradabashu         | 1985-04-02 |
+| C003  | Sekar Mirah        | 1983-02-20 |
+| C004  | Swandaru Geni      | 1981-01-04 |
+| C002  | Pandan Wangi       | 1950-01-01 |
++-------+--------------------+------------+
+12 rows in set (0.001 sec)// menampilkan berdasarkan kode, nama dan tgl_lahir nya saja
+
+8.  SELECT nama, harga_jual FROM produk
+    -> ORDER BY harga_jual DESC LIMIT 4;
++-------------------+------------+
+| nama              | harga_jual |
++-------------------+------------+
+| Televisi 21 inchs |   50500000 |
+| Televisi 24 inc   |   50500000 |
+| Televisi 23 inc   |   50500000 |
+| Televisi 22 inc`  |   50500000 |
++-------------------+------------+
+4 rows in set (0.001 sec) // menampilkan beberapa produk dan harga jual yang termahal
+
+9. SELECT nama, harga_jual FROM produk
+    -> WHERE harga_jual LIMIT 4;
++-------------------+------------+
+| nama              | harga_jual |
++-------------------+------------+
+| Televisi 21 inchs |   50500000 |
+| Televisi 40 inch  |    7440000 |
+| Kulkas 2 pintu    |    4680000 |
+| Meja Makan        |     600000 |
++-------------------+------------+
+4 rows in set (0.001 sec) // menampilkan harga jual dan membatasi produk nya saja
+
+10.  SELECT nama, MAX(harga_jual)
+    -> AS produk_termahal from produk;
++-------------------+-----------------+
+| nama              | produk_termahal |
++-------------------+-----------------+
+| Televisi 21 inchs |        50500000 |
++-------------------+-----------------+
+1 row in set (0.001 sec) // menampilkan harga yang termahal saja
+
+11.  SELECT kode, nama, tmp_lahir FROM pelanggan
+    -> WHERE tmp_lahir = "jakarta";
++-------+-------------+-----------+
+| kode  | nama        | tmp_lahir |
++-------+-------------+-----------+
+| C006  | Gayatri Dwi | Jakarta   |
+| C007  | Dewi Gyat   | Jakarta   |
+| K0011 | Ira         | Jakarta   |
++-------+-------------+-----------+
+3 rows in set (0.001 sec) // ini menampilkan untuk tmp lahir saja dari data pelanggan 
+
+12. SELECT kode, nama, harga_jual, stok FROM produk
+    -> WHERE harga_jual > 10000000 AND stok > 5;
++------+-----------------+------------+------+
+| kode | nama            | harga_jual | stok |
++------+-----------------+------------+------+
+| AC01 | Notebook Acer S |   11232000 |    7 |
+| LN01 | Notebook Lenovo |   12480000 |    9 |
++------+-----------------+------------+------+
+2 rows in set (0.001 sec) // ini menampilkan harga stok lebih dari 10juta dan membatasi stok 5 saja dari data produk 
+
+untuk kode diatas itu menggunakan materi select semua 
